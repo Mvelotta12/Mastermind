@@ -1,15 +1,16 @@
 load Mastermind;   
 
-% Loads Board (10x8 cell array), eight color blocks (red, green, blue, yellow, purple, pink, orange, turquoise), a white peg block and a black peg block.
+%Loads Board (10x8 cell array), eight color blocks (red, green, blue, 
+%yellow, purple, pink, orange, turquoise), a white peg block and a black peg block.
 imshow([Board{1,:};Board{2,:};Board{3,:};Board{4,:};Board{5,:};Board{6,:};Board{7,:};Board{8,:};Board{9,:};Board{10,:}]);
 
-% Show all 10 rows and 8 columns
+%Show all 10 rows and 8 columns
+%figure('WindowStyle','docked')
 
-%Colors - Red, Green, Blue, Yellow, Purple, Pink, Orange, Turquoise
+%Docks the figure so that it will stay on the screen.
+number = randi(8);
 
-%answer = [randi([1,8]) randi([1,8]) randi([1,8]) randi([1,8])]
-
-number = randi(8)
+%Randomly generates a number
 if number == 1;
 color1 = Red;
 elseif number == 2;
@@ -28,7 +29,11 @@ elseif number == 8;
 color1 = Turquoise;
 end
 
-number = randi(8)
+%Depending on the value of the generated number, assigns color1 a color
+
+number = randi(8);
+
+%Randomly generates a number
 if number == 1;
 color2 = Red;
 elseif number == 2;
@@ -47,7 +52,10 @@ elseif number == 8;
 color2 = Turquoise;
 end
 
-number = randi(8)
+%Depending on the value of the generated number, assigns color2 a color
+number = randi(8);
+
+%Randomly generates a number
 if number == 1;
 color3 = Red;
 elseif number == 2;
@@ -66,7 +74,10 @@ elseif number == 8;
 color3 = Turquoise;
 end
 
-number = randi(8)
+%Depending on the value of the generated number, assigns color3 a color
+number = randi(8);
+
+%Randomly generates a number
 if number == 1;
 color4 = Red;
 elseif number == 2;
@@ -84,17 +95,40 @@ color4 = Orange;
 elseif number == 8;
 color4 = Turquoise;
 end
-%%
+
+%Depending on the value of the generated number, assigns color4 a color
 gameOver = 0;
+
+%GameOver is initialized as false, becomes true when the user guesses the
+%correct color sequence, ending the game in victory.
 count = 1;
+
+%Counts how many tries it takes the user to guess the color sequence. If
+%the user uses all 10 guesses and does not get the correct color sequnce,
+%the game ends in defeat.
+fprintf('\nGuess the randomly generated four color sequence.')
+fprintf('\n')
+fprintf('\nA black peg signifies a correct color in the correct position.')
+fprintf('\nA white peg signifies a correct color in the wrong position.')
+fprintf('\nGuess Format: Capital first letter, rest lowercase.')
+fprintf('\n')
+
+%Print instructions to the user
 while (gameOver == 0 && count < 11)
-    fprintf('\nColors - Red, Green, Blue, Yellow, Purple, Pink, Orange, Turquoise')
-    guess1 = input('\nGuess the color in position 1: ');
     blackPegs = 0;
     whitePegs = 0;
+    
+    %Initialize counter variables for black and white pegs. Reset each time
+    %at the start of the while loop.
+    fprintf('\nColors - Red, Green, Blue, Yellow, Purple, Pink, Orange, Turquoise')
+    
+    %Print color options to the user
+    guess1 = input('\nGuess the color in position 1: ');
     if (guess1 == color1)
-        fprintf('\nCorrect!')
         blackPegs = blackPegs + 1;
+    
+    %If the guess at position 1 equals the color in position 1, add 1 to
+    %the black peg count.
     elseif (guess1 == color2)
             whitePegs = whitePegs + 1;
     elseif (guess1 == color3)
@@ -102,10 +136,15 @@ while (gameOver == 0 && count < 11)
     elseif (guess1 == color4)
             whitePegs = whitePegs + 1;
     end
+    
+    %If the guess at position 1 equals the color in any other position, add
+    %1 to the white peg count.
     guess2 = input('\nGuess the color in position 2: ');
     if (guess2 == color2)
-        fprintf('\nCorrect!')
         blackPegs = blackPegs + 1;
+        
+    %If the guess at position 2 equals the color in position 2, add 1 to
+    %the black peg count.
     elseif (guess2 == color1)
             whitePegs = whitePegs + 1;
     elseif (guess2 == color3)
@@ -113,10 +152,15 @@ while (gameOver == 0 && count < 11)
     elseif (guess2 == color4)
             whitePegs = whitePegs + 1;
     end
+    
+    %If the guess at position 2 equals the color in any other position, add
+    %1 to the white peg count.
     guess3 = input('\nGuess the color in position 3: ');
     if (guess3 == color3)
-        fprintf('\nCorrect!')
         blackPegs = blackPegs + 1;
+        
+    %If the guess at position 3 equals the color in position 3, add 1 to
+    %the black peg count.
     elseif (guess3 == color1)
             whitePegs = whitePegs + 1;
     elseif (guess3 == color2)
@@ -124,10 +168,15 @@ while (gameOver == 0 && count < 11)
     elseif (guess3 == color4)
             whitePegs = whitePegs + 1;
     end
+    
+    %If the guess at position 3 equals the color in any other position, add
+    %1 to the white peg count.
     guess4 = input('\nGuess the color in position 4: ');
     if (guess4 == color4)
-        fprintf('\nCorrect!')
         blackPegs = blackPegs + 1;
+        
+    %If the guess at position 4 equals the color in position 4, add 1 to
+    %the black peg count.
     elseif (guess4 == color1)
             whitePegs = whitePegs + 1;
     elseif (guess4 == color2)
@@ -135,11 +184,16 @@ while (gameOver == 0 && count < 11)
     elseif (guess4 == color3)
             whitePegs = whitePegs + 1;
     end
+    
+    %If the guess at position 4 equals the color in any other position, add
+    %1 to the white peg count.
         
     Board{count,1}= guess1;
     Board{count,2}= guess2;
     Board{count,3}= guess3;
     Board{count,4}= guess4;
+    
+    %Enter the colors in Row count, columns 1-4
     i = 0;
     column = 5;
     while (i < blackPegs)
@@ -147,22 +201,40 @@ while (gameOver == 0 && count < 11)
         column = column + 1;
         i = i + 1;
     end
+    
+    %If i is less than the number of black pegs, place a black peg in Row
+    %count, column column.
     i = 0;
     while (i < whitePegs)
         Board{count,column}= WhitePeg;
         column = column + 1;
         i = i + 1;
     end
+    
+    %If i is less than the number of white pegs, place a black peg in Row
+    %count, column column.
     imshow([Board{1,:};Board{2,:};Board{3,:};Board{4,:};Board{5,:};Board{6,:};Board{7,:};Board{8,:};Board{9,:};Board{10,:}]);
+    
+    %Display the updated board
     if (blackPegs == 4)
         gameOver = 1;
-    else
+    end
+    
+    %If there are 4 black pegs, end the game in victory.
+    if (count < 10)
         fprintf('\nColor sequence is incorrect, try again.')
     end
+    
+    %If the guessed color sequence is incorrect, prompt the user to try
+    %again.
     count = count + 1;
+    
+    %Update count variable for number of tries
 end
 if (gameOver == 1)
     fprintf('\nYou Win!')
 else
-    fprintf('You Lost')
+    fprintf('\nColor sequence is incorrect, You Lost')
 end
+
+%Print win or loss message

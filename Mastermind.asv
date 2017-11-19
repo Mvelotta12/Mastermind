@@ -1,0 +1,168 @@
+load Mastermind;   
+
+% Loads Board (10x8 cell array), eight color blocks (red, green, blue, yellow, purple, pink, orange, turquoise), a white peg block and a black peg block.
+imshow([Board{1,:};Board{2,:};Board{3,:};Board{4,:};Board{5,:};Board{6,:};Board{7,:};Board{8,:};Board{9,:};Board{10,:}]);
+
+% Show all 10 rows and 8 columns
+
+%Colors - Red, Green, Blue, Yellow, Purple, Pink, Orange, Turquoise
+
+%answer = [randi([1,8]) randi([1,8]) randi([1,8]) randi([1,8])]
+
+number = randi(8)
+if number == 1;
+color1 = Red;
+elseif number == 2;
+color1 = Green;
+elseif number == 3;
+color1 = Blue;
+elseif number == 4;
+color1 = Yellow;
+elseif number == 5;
+color1 = Purple;
+elseif number == 6;
+color1 = Pink;
+elseif number == 7;
+color1 = Orange;
+elseif number == 8;
+color1 = Turquoise;
+end
+
+number = randi(8)
+if number == 1;
+color2 = Red;
+elseif number == 2;
+color2 = Green;
+elseif number == 3;
+color2 = Blue;
+elseif number == 4;
+color2 = Yellow;
+elseif number == 5;
+color2 = Purple;
+elseif number == 6;
+color2 = Pink;
+elseif number == 7;
+color2 = Orange;
+elseif number == 8;
+color2 = Turquoise;
+end
+
+number = randi(8)
+if number == 1;
+color3 = Red;
+elseif number == 2;
+color3 = Green;
+elseif number == 3;
+color3 = Blue;
+elseif number == 4;
+color3 = Yellow;
+elseif number == 5;
+color3 = Purple;
+elseif number == 6;
+color3 = Pink;
+elseif number == 7;
+color3 = Orange;
+elseif number == 8;
+color3 = Turquoise;
+end
+
+number = randi(8)
+if number == 1;
+color4 = Red;
+elseif number == 2;
+color4 = Green;
+elseif number == 3;
+color4 = Blue;
+elseif number == 4;
+color4 = Yellow;
+elseif number == 5;
+color4 = Purple;
+elseif number == 6;
+color4 = Pink;
+elseif number == 7;
+color4 = Orange;
+elseif number == 8;
+color4 = Turquoise;
+end
+%%
+gameOver = 0;
+count = 1;
+while (gameOver == 0 && count < 11)
+    fprintf('\nColors - Red, Green, Blue, Yellow, Purple, Pink, Orange, Turquoise')
+    guess1 = input('\nGuess the color in position 1: ');
+    blackPegs = 0;
+    whitePegs = 0;
+    if (guess1 == color1)
+        fprintf('\nCorrect!')
+        blackPegs = blackPegs + 1;
+    elseif (guess1 == color2)
+            whitePegs = whitePegs + 1;
+    elseif (guess1 == color3)
+            whitePegs = whitePegs + 1;
+    elseif (guess1 == color4)
+            whitePegs = whitePegs + 1;
+    end
+    guess2 = input('\nGuess the color in position 2: ');
+    if (guess2 == color2)
+        fprintf('\nCorrect!')
+        blackPegs = blackPegs + 1;
+    elseif (guess2 == color1)
+            whitePegs = whitePegs + 1;
+    elseif (guess2 == color3)
+            whitePegs = whitePegs + 1;
+    elseif (guess2 == color4)
+            whitePegs = whitePegs + 1;
+    end
+    guess3 = input('\nGuess the color in position 3: ');
+    if (guess3 == color3)
+        fprintf('\nCorrect!')
+        blackPegs = blackPegs + 1;
+    elseif (guess3 == color1)
+            whitePegs = whitePegs + 1;
+    elseif (guess3 == color2)
+            whitePegs = whitePegs + 1;
+    elseif (guess3 == color4)
+            whitePegs = whitePegs + 1;
+    end
+    guess4 = input('\nGuess the color in position 4: ');
+    if (guess4 == color4)
+        fprintf('\nCorrect!')
+        blackPegs = blackPegs + 1;
+    elseif (guess4 == color1)
+            whitePegs = whitePegs + 1;
+    elseif (guess4 == color2)
+            whitePegs = whitePegs + 1;
+    elseif (guess4 == color3)
+            whitePegs = whitePegs + 1;
+    end
+        
+    Board{count,1}= guess1;
+    Board{count,2}= guess2;
+    Board{count,3}= guess3;
+    Board{count,4}= guess4;
+    i = 0;
+    column = 5;
+    while (i < blackPegs)
+        Board{count,column}= BlackPeg;
+        column = column + 1;
+        i = i + 1;
+    end
+    i = 0;
+    while (i < whitePegs)
+        Board{count,column}= WhitePeg;
+        column = column + 1;
+        i = i + 1;
+    end
+    imshow([Board{1,:};Board{2,:};Board{3,:};Board{4,:};Board{5,:};Board{6,:};Board{7,:};Board{8,:};Board{9,:};Board{10,:}]);
+    if (blackPegs == 4)
+        gameOver = 1;
+    else
+        fprintf('\nColor sequence is incorrect, try again.')
+    end
+    count = count + 1;
+end
+if (gameOver == 1)
+    fprintf('\nYou Win!')
+else
+    fprintf('You Lost')
+end

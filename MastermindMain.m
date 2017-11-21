@@ -11,7 +11,7 @@ imshow([Board{1,:};Board{2,:};Board{3,:};Board{4,:};Board{5,:};Board{6,:};Board{
 %figure('WindowStyle','docked')
 
 %Docks the figure so that it will stay on the screen.
-number = randi(8)
+number = randi(8);
 
 %Randomly generates a number
 if number == 1
@@ -34,7 +34,7 @@ end
 
 %Depending on the value of the generated number, assigns color1 a color
 
-number = randi(8)
+number = randi(8);
 
 %Randomly generates a number
 if number == 1
@@ -56,7 +56,7 @@ color2 = Turquoise;
 end
 
 %Depending on the value of the generated number, assigns color2 a color
-number = randi(8)
+number = randi(8);
 
 %Randomly generates a number
 if number == 1
@@ -78,7 +78,7 @@ color3 = Turquoise;
 end
 
 %Depending on the value of the generated number, assigns color3 a color
-number = randi(8)
+number = randi(8);
 
 %Randomly generates a number
 if number == 1
